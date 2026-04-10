@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SA Digital Lab | স্বাস্থ্যসেবা ও ডায়াগনস্টিক সেন্টার</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --teal-900: #0d3d4f;
+      --teal-700: #0f5c74;
+      --teal-500: #1588a8;
+      --teal-300: #5ab8d0;
+      --teal-100: #d0eef5;
+      --teal-50:  #eaf7fb;
+      --gold:     #f0b429;
+      --gold-lt:  #fef3d0;
+      --red:      #e03b3b;
+      --green:    #1aa26b;
+      --white:    #ffffff;
+      --gray-50:  #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-300: #cbd5e1;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 2px 8px rgba(13,61,79,.07);
+      --shadow-md: 0 8px 24px rgba(13,61,79,.10);
+      --shadow-lg: 0 20px 48px rgba(13,61,79,.14);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', 'Noto Sans Bengali', sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== LANG SWITCH ===== */
+    [data-lang="en"] { display: none; }
+    [data-lang="bn"] { display: inline; }
+    body.en [data-lang="bn"] { display: none; }
+    body.en [data-lang="en"] { display: inline; }
+    [data-lang-block="en"] { display: none; }
+    [data-lang-block="bn"] { display: block; }
+    body.en [data-lang-block="bn"] { display: none; }
+    body.en [data-lang-block="en"] { display: block; }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      background: var(--teal-900);
+      color: var(--teal-100);
+      font-size: .85rem;
+      padding: 8px 0;
+    }
+    .topbar-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 28px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      flex-wrap: wrap;
+    }
+    .topbar a { color: var(--teal-100); text-decoration: none; transition: color .2s; }
+    .topbar a:hover { color: var(--gold); }
+    .topbar i { margin-right: 6px; color: var(--gold); }
+
+    .lang-switcher {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 40px;
+      padding: 4px 6px;
+    }
+    .logo-icon img {
+      width: 40px; height: 40px; object-fit: cover; border-radius: 50%;
+    }
+
+    .lang-btn {
+      padding: 5px 14px; border-radius: 30px; border: none;
+      font-weight: 600; font-size: .82rem; cursor: pointer;
+      transition: all .2s; background: transparent;
+      color: var(--teal-100); letter-spacing: .04em;
+    }
+    .lang-btn.active { background: var(--gold); color: var(--teal-900); }
+
+    /* ===== NAVBAR ===== */
+    .nav-wrap {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 2px 16px rgba(0,0,0,.07);
+    }
+    .navbar {
+      max-width: 1280px; margin: 0 auto; padding: 0 28px;
+      height: 72px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .logo-icon {
+      width: 46px; height: 46px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 22px;
+      box-shadow: 0 6px 14px rgba(15,92,116,.3);
+    }
+    .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; }
+    .logo-text .sa { color: var(--teal-700); }
+    .logo-text .dl { color: var(--teal-500); }
+
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--gray-700); font-weight: 500; font-size: .95rem;
+      padding: 8px 14px; border-radius: 30px; transition: all .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: var(--teal-50); color: var(--teal-700); }
+    .nav-links a i { margin-right: 6px; font-size: .85rem; }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: white; padding: 10px 22px; border-radius: 30px; border: none;
+      font-weight: 600; font-size: .93rem; cursor: pointer;
+      box-shadow: 0 6px 16px rgba(15,92,116,.3);
+      transition: all .2s; text-decoration: none; white-space: nowrap;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(15,92,116,.4); }
+
+    .menu-toggle {
+      display: none; background: none; border: 2px solid var(--teal-100);
+      color: var(--teal-700); font-size: 1.4rem; padding: 8px 12px;
+      border-radius: 10px; cursor: pointer;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(160deg, var(--teal-900) 0%, var(--teal-700) 55%, var(--teal-500) 100%);
+      position: relative; overflow: hidden;
+      padding: 80px 0 90px;
+      min-height: 88vh;
+      display: flex; align-items: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='18'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero::after {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(90,184,208,.18), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-blob2 {
+      position: absolute; bottom: -150px; left: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,180,41,.1), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 28px;
+      display: flex; align-items: center; gap: 60px; position: relative; z-index: 1;
+      flex-wrap: wrap;
+    }
+    .hero-content { flex: 1 1 420px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      color: var(--gold); padding: 7px 18px; border-radius: 30px;
+      font-size: .88rem; font-weight: 600; margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-badge i { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.5;} }
+
+    .hero h1 {
+      font-family: 'Playfair Display', 'Noto Sans Bengali', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800; color: white; line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 .highlight {
+      color: var(--gold);
+      text-decoration: underline;
+      text-decoration-color: rgba(240,180,41,.4);
+      text-underline-offset: 6px;
+    }
+    .hero p {
+      color: rgba(255,255,255,.82); font-size: 1.12rem;
+      max-width: 500px; margin-bottom: 36px; line-height: 1.8;
+    }
+
+    .hero-stats { display: flex; gap: 36px; margin-bottom: 38px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem; font-weight: 800; color: var(--gold); line-height: 1;
+    }
+    .stat-label { color: rgba(255,255,255,.7); font-size: .88rem; margin-top: 4px; }
+    .stat-divider { width: 1px; background: rgba(255,255,255,.15); align-self: stretch; }
+
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--teal-900);
+      padding: 14px 30px; border-radius: 40px; border: none;
+      font-weight: 700; font-size: 1rem; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 8px 24px rgba(240,180,41,.35); transition: all .25s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(240,180,41,.45); }
+    .btn-ghost {
+      background: rgba(255,255,255,.1); color: white;
+      padding: 14px 30px; border-radius: 40px;
+      border: 1.5px solid rgba(255,255,255,.3);
+      font-weight: 600; font-size: 1rem; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      backdrop-filter: blur(8px); transition: all .25s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.2); transform: translateY(-3px); }
+
+    .hero-visual { flex: 1 1 340px; position: relative; }
+    .hero-card-main {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius-xl); padding: 36px 32px;
+      backdrop-filter: blur(20px); box-shadow: 0 24px 60px rgba(0,0,0,.25);
+    }
+    .hero-card-main h3 { color: white; font-size: 1.15rem; margin-bottom: 20px; }
+    .service-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.9); padding: 9px 16px; border-radius: 30px;
+      margin: 5px; font-size: .88rem; font-weight: 500; transition: all .2s;
+    }
+    .service-pill:hover { background: rgba(255,255,255,.2); }
+    .service-pill i { color: var(--gold); }
+
+    /* ===== SECTION COMMONS ===== */
+    .section { padding: 90px 0; }
+    .section-alt { background: var(--gray-50); }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+    .section-header { margin-bottom: 56px; }
+    .section-tag {
+      display: inline-block;
+      background: var(--teal-100); color: var(--teal-700);
+      padding: 6px 16px; border-radius: 30px;
+      font-size: .82rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', 'Noto Sans Bengali', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; color: var(--teal-900);
+      margin-bottom: 14px; line-height: 1.2;
+    }
+    .section-sub { color: var(--gray-500); font-size: 1.05rem; max-width: 560px; line-height: 1.8; }
+
+    /* ===== SERVICES ===== */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    .service-card {
+      background: white; border-radius: var(--radius-lg);
+      padding: 32px 24px; border: 1px solid var(--gray-100);
+      box-shadow: var(--shadow-sm); transition: all .28s; cursor: default;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--teal-700), var(--teal-300));
+      transform: scaleX(0); transform-origin: left; transition: transform .3s;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--teal-100); }
+    .s-icon {
+      width: 64px; height: 64px; border-radius: 18px; background: var(--teal-50);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: var(--teal-700); margin-bottom: 20px; transition: all .25s;
+    }
+    .service-card:hover .s-icon { background: var(--teal-700); color: white; }
+    .service-card h3 { font-size: 1.12rem; font-weight: 700; color: var(--teal-900); margin-bottom: 8px; }
+    .service-card p { color: var(--gray-500); font-size: .9rem; line-height: 1.7; }
+
+    /* ===== DOCTORS ===== */
+    .doctors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+    .doctor-card {
+      background: white; border-radius: var(--radius-lg);
+      padding: 30px 20px 24px; text-align: center;
+      border: 1px solid var(--gray-100); box-shadow: var(--shadow-sm); transition: all .25s;
+    }
+    .doctor-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .doc-avatar {
+      width: 96px; height: 96px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-100), var(--teal-50));
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px; color: var(--teal-500); border: 3px solid var(--teal-100);
+    }
+    .doc-name { font-size: 1.1rem; font-weight: 700; color: var(--teal-900); margin-bottom: 4px; }
+    .doc-spec { color: var(--teal-500); font-size: .88rem; font-weight: 600; margin-bottom: 14px; }
+    .doc-time {
+      background: var(--teal-50); color: var(--teal-700);
+      border-radius: 8px; padding: 8px 12px;
+      font-size: .82rem; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .doc-time i { color: var(--teal-500); }
+    .more-docs-banner {
+      background: linear-gradient(135deg, var(--teal-900), var(--teal-700));
+      border-radius: var(--radius-lg); padding: 28px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      color: white; margin-top: 24px; gap: 16px; flex-wrap: wrap;
+      box-shadow: var(--shadow-md);
+    }
+    .more-docs-banner strong { font-size: 1.3rem; font-family: 'Playfair Display', serif; }
+    .more-docs-banner p { opacity: .8; font-size: .92rem; margin-top: 4px; }
+    .badge-count {
+      background: var(--gold); color: var(--teal-900);
+      font-weight: 800; font-size: 2.2rem; padding: 12px 24px;
+      border-radius: 14px; font-family: 'Playfair Display', serif; white-space: nowrap;
+    }
+
+    /* ===== SCHEDULE ===== */
+    .schedule-flex { display: flex; gap: 28px; flex-wrap: wrap; }
+    .schedule-main {
+      flex: 2 1 340px; background: white;
+      border-radius: var(--radius-xl); padding: 36px;
+      box-shadow: var(--shadow-md); border: 1px solid var(--gray-100);
+    }
+    .schedule-main h3 {
+      font-family: 'Playfair Display', 'Noto Sans Bengali', serif;
+      font-size: 1.4rem; color: var(--teal-900); margin-bottom: 26px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .schedule-main h3 i { color: var(--teal-500); }
+    .s-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; border-bottom: 1px dashed var(--gray-100); gap: 12px;
+    }
+    .s-row:last-child { border: none; }
+    .s-day { color: var(--gray-700); font-weight: 500; }
+    .s-time {
+      font-weight: 700; color: var(--teal-700);
+      background: var(--teal-50); padding: 5px 12px; border-radius: 8px;
+      font-size: .88rem; text-align: right;
+    }
+
+    .blood-panel {
+      flex: 1 1 260px; background: linear-gradient(160deg, #b91c1c, #dc2626);
+      border-radius: var(--radius-xl); padding: 36px; color: white;
+      box-shadow: 0 16px 40px rgba(185,28,28,.3); position: relative; overflow: hidden;
+    }
+    .blood-panel::before {
+      content: '\f0a2'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      position: absolute; bottom: -20px; right: -20px;
+      font-size: 140px; opacity: .06; color: white;
+    }
+    .blood-panel h3 { font-family: 'Playfair Display', 'Noto Sans Bengali', serif; font-size: 1.6rem; margin-bottom: 20px; }
+    .blood-panel h3 i { margin-right: 10px; }
+    .blood-time { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
+    .blood-note { opacity: .85; font-size: .9rem; margin-bottom: 4px; }
+    .blood-divider { border: none; border-top: 1px solid rgba(255,255,255,.2); margin: 20px 0; }
+    .blood-feature { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: .9rem; }
+    .blood-feature i { margin-top: 2px; opacity: .85; flex-shrink: 0; }
+
+    /* ===== WHY US ===== */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+    .why-card {
+      border-radius: var(--radius-lg); padding: 32px 24px;
+      background: white; border: 1px solid var(--gray-100);
+      box-shadow: var(--shadow-sm); transition: all .25s;
+    }
+    .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .why-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
+    .why-icon.teal { background: var(--teal-50); color: var(--teal-700); }
+    .why-icon.gold { background: var(--gold-lt); color: #b45309; }
+    .why-icon.green { background: #d1fae5; color: #065f46; }
+    .why-icon.red  { background: #fee2e2; color: #991b1b; }
+    .why-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--teal-900); margin-bottom: 8px; }
+    .why-card p  { color: var(--gray-500); font-size: .9rem; line-height: 1.7; }
+
+    /* ===== CONTACT ===== */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    @media(max-width:768px){ .contact-grid{ grid-template-columns:1fr; } }
+
+    .contact-info {
+      background: linear-gradient(160deg, var(--teal-900), var(--teal-700));
+      border-radius: var(--radius-xl); padding: 44px 36px; color: white;
+    }
+    .contact-info h3 { font-family: 'Playfair Display', 'Noto Sans Bengali', serif; font-size: 2rem; margin-bottom: 32px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .ci-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(255,255,255,.12); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--gold);
+    }
+    .ci-text strong { display: block; font-size: 1rem; margin-bottom: 2px; }
+    .ci-text span  { opacity: .75; font-size: .9rem; }
+
+    .social-row { display: flex; gap: 12px; margin-top: 30px; }
+    .social-btn {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 18px; text-decoration: none; transition: all .2s;
+    }
+    .social-btn:hover { background: var(--gold); color: var(--teal-900); }
+
+    .contact-form {
+      background: white; border-radius: var(--radius-xl);
+      padding: 44px 36px; box-shadow: var(--shadow-md); border: 1px solid var(--gray-100);
+    }
+    .contact-form h3 { font-family: 'Playfair Display', 'Noto Sans Bengali', serif; font-size: 1.6rem; color: var(--teal-900); margin-bottom: 28px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-weight: 600; font-size: .9rem; color: var(--gray-700); margin-bottom: 7px; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid var(--gray-300); border-radius: 12px;
+      font-size: .95rem; font-family: inherit; color: var(--gray-900);
+      transition: border-color .2s; outline: none; background: var(--gray-50);
+    }
+    .form-group input:focus, .form-group select:focus { border-color: var(--teal-500); background: white; }
+    .form-submit {
+      width: 100%; padding: 14px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--teal-700), var(--teal-500));
+      color: white; font-weight: 700; font-size: 1rem; border: none; cursor: pointer;
+      box-shadow: 0 8px 20px rgba(15,92,116,.25);
+      transition: all .25s; display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: inherit;
+    }
+    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(15,92,116,.35); }
+
+    /* ===== DEVELOPER SECTION ===== */
+    .dev-section-wrap {
+      background: white;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--gray-100);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .dev-section-wrap::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal-700), var(--teal-300), var(--gold));
+    }
+    .dev-inner {
+      padding: 36px 40px;
+      display: flex; align-items: flex-start; gap: 28px; flex-wrap: wrap;
+    }
+    .dev-avatar {
+      width: 56px; height: 56px; border-radius: 16px;
+      background: var(--teal-50); border: 1px solid var(--teal-100);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: var(--teal-700); flex-shrink: 0;
+    }
+    .dev-body { flex: 1; min-width: 260px; }
+    .dev-title-row {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 10px; flex-wrap: wrap;
+    }
+    .dev-title {
+      font-size: 1.05rem; font-weight: 700; color: var(--teal-900);
+    }
+    .dev-badge {
+      font-size: .72rem; font-weight: 700;
+      padding: 3px 11px; border-radius: 20px; letter-spacing: .06em;
+      background: var(--teal-50); color: var(--teal-700);
+      border: 1px solid var(--teal-100);
+    }
+    .dev-desc {
+      font-size: .9rem; color: var(--gray-500); line-height: 1.75;
+      margin-bottom: 20px; max-width: 560px;
+    }
+    .dev-desc strong { color: var(--gray-700); font-weight: 600; }
+    .dev-contacts-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .dev-contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 18px; border-radius: var(--radius-md);
+      border: 1px solid var(--gray-100); background: var(--gray-50);
+      text-decoration: none; color: var(--gray-900);
+      font-size: .88rem; font-weight: 600;
+      transition: all .2s;
+    }
+    .dev-contact-btn:hover {
+      border-color: var(--teal-300); background: var(--teal-50);
+      color: var(--teal-700); transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    .dev-contact-btn i { color: var(--teal-500); font-size: 13px; }
+    .dev-divider {
+      width: 1px; background: var(--gray-100);
+      align-self: stretch; flex-shrink: 0;
+    }
+    .dev-meta {
+      min-width: 160px; display: flex; flex-direction: column;
+      justify-content: center; gap: 10px;
+    }
+    .dev-meta-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .82rem; color: var(--gray-500);
+    }
+    .dev-meta-item i { color: var(--teal-300); width: 14px; text-align: center; }
+    .dev-meta-item span { color: var(--gray-700); font-weight: 500; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--teal-900); color: rgba(255,255,255,.75);
+      padding: 72px 0 36px; border-radius: 40px 40px 0 0;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    @media(max-width:900px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+    @media(max-width:600px){ .footer-grid{ grid-template-columns:1fr; } }
+
+    .footer-brand .logo-text { color: white; font-size: 1.6rem; }
+    .footer-brand p { margin-top: 14px; line-height: 1.8; font-size: .9rem; max-width: 280px; }
+    footer h4 { color: white; font-size: 1rem; font-weight: 700; margin-bottom: 18px; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 10px; }
+    footer ul a { color: rgba(255,255,255,.65); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    footer ul a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 28px; text-align: center;
+      font-size: .85rem; color: rgba(255,255,255,.4);
+    }
+    .footer-bottom span { color: var(--gold); }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:768px){
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: white; flex-direction: column; padding: 20px 28px; gap: 4px; box-shadow: var(--shadow-md); }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .nav-cta { display: none; }
+      .hero { min-height: auto; padding: 56px 0 64px; }
+      .hero-inner { gap: 36px; }
+      .stat-divider { display: none; }
+      .schedule-flex { flex-direction: column; }
+      .about-grid { grid-template-columns: 1fr !important; }
+      .dev-divider { display: none; }
+      .dev-meta { flex-direction: row; flex-wrap: wrap; }
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== TOAST ===== */
+    #toast {
+      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--teal-900); color: white; padding: 14px 28px; border-radius: 40px;
+      box-shadow: var(--shadow-lg); font-weight: 600; font-size: .95rem;
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+      z-index: 9999; white-space: nowrap;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div>
+      <i class="fas fa-map-marker-alt"></i>
+      <span data-lang="bn">৬৮, ৬৯, ৭০ পূর্ব স্টেডিয়াম মার্কেট (নিচ তলা, মসজিদের পাশে), সিলেট</span>
+      <span data-lang="en">68, 69, 70 East Stadium Market (Ground Floor, Beside Mosque), Sylhet</span>
+      &nbsp;|&nbsp;
+      <i class="fas fa-phone"></i>
+      <span data-lang="bn">০১৬৩৫-৫৭০৮৭১, ০১৬৩৫-৫৭০৮৭২</span>
+      <span data-lang="en">01635-570871, 01635-570872</span>
+      &nbsp;|&nbsp;
+      <i class="fas fa-clock"></i>
+      <span data-lang="bn">সকাল ৯টা – রাত ৯টা</span>
+      <span data-lang="en">9 AM – 9 PM</span>
+    </div>
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btnBn" onclick="setLang('bn')">বাংলা</button>
+      <button class="lang-btn" id="btnEn" onclick="setLang('en')">English</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<div class="nav-wrap">
+  <nav class="navbar">
+    <a href="#home" class="logo">
+      <div class="logo-icon">
+        <img src="images/logo1.jpeg" alt="SA Digital Lab Logo">
+      </div>
+      <div class="logo-text"><span class="sa">SA</span> <span class="dl">Digital Lab</span></div>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="menu"><i class="fas fa-bars"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home"><i class="fas fa-home"></i><span data-lang="bn">হোম</span><span data-lang="en">Home</span></a></li>
+      <li><a href="#services"><i class="fas fa-stethoscope"></i><span data-lang="bn">সেবা</span><span data-lang="en">Services</span></a></li>
+      <li><a href="#doctors"><i class="fas fa-user-md"></i><span data-lang="bn">চিকিৎসক</span><span data-lang="en">Doctors</span></a></li>
+      <li><a href="#timing"><i class="fas fa-clock"></i><span data-lang="bn">সময়সূচী</span><span data-lang="en">Schedule</span></a></li>
+      <li><a href="#contact"><i class="fas fa-phone-alt"></i><span data-lang="bn">যোগাযোগ</span><span data-lang="en">Contact</span></a></li>
+      <li><a href="#aboutus"><i class="fas fa-info-circle"></i><span data-lang="bn">আমাদের সম্পর্কে</span><span data-lang="en">About Us</span></a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">
+      <span data-lang="bn">অ্যাপয়েন্টমেন্ট নিন</span>
+      <span data-lang="en">Book Appointment</span>
+    </a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-heartbeat"></i>
+        <span data-lang="bn">সিলেটের বিশ্বস্ত ডায়াগনস্টিক সেন্টার</span>
+        <span data-lang="en">Sylhet's Trusted Diagnostic Centre</span>
+      </div>
+      <h1>
+        <span data-lang="bn">আপনার <span class="highlight">স্বাস্থ্যসেবার</span><br>নির্ভরযোগ্য ঠিকানা</span>
+        <span data-lang="en">Your <span class="highlight">Trusted Partner</span><br>for Healthcare</span>
+      </h1>
+      <p>
+        <span data-lang="bn">এক্স-রে, ইসিজি, আল্ট্রাসনোগ্রাফি, রক্ত পরীক্ষা সহ অত্যাধুনিক ডিজিটাল ল্যাব সার্ভিস — সবই এক ছাদের নিচে।</span>
+        <span data-lang="en">X-Ray, ECG, Ultrasonography, Blood Tests and state-of-the-art digital lab services — all under one roof.</span>
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num"><span data-lang="bn">২০+</span><span data-lang="en">20+</span></div>
+          <div class="stat-label"><span data-lang="bn">বিশেষজ্ঞ ডাক্তার</span><span data-lang="en">Expert Doctors</span></div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-num"><span data-lang="bn">১৫০+</span><span data-lang="en">150+</span></div>
+          <div class="stat-label"><span data-lang="bn">টেস্ট সুবিধা</span><span data-lang="en">Test Facilities</span></div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-num"><span data-lang="bn">২৪/৭</span><span data-lang="en">24/7</span></div>
+          <div class="stat-label"><span data-lang="bn">জরুরী সেবা</span><span data-lang="en">Emergency Care</span></div>
+        </div>
+      </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">
+          <i class="fas fa-calendar-check"></i>
+          <span data-lang="bn">অ্যাপয়েন্টমেন্ট নিন</span>
+          <span data-lang="en">Book Appointment</span>
+        </a>
+        <a href="#services" class="btn-ghost">
+          <i class="fas fa-arrow-down"></i>
+          <span data-lang="bn">সেবাসমূহ দেখুন</span>
+          <span data-lang="en">Our Services</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <h3><i class="fas fa-th" style="margin-right:10px;color:var(--gold)"></i>
+          <span data-lang="bn">আমাদের সেবাসমূহ</span>
+          <span data-lang="en">Our Services</span>
+        </h3>
+        <div>
+          <span class="service-pill"><i class="fas fa-x-ray"></i><span data-lang="bn">ডিজিটাল এক্স-রে</span><span data-lang="en">Digital X-Ray</span></span>
+          <span class="service-pill"><i class="fas fa-heartbeat"></i><span data-lang="bn">ইসিজি</span><span data-lang="en">ECG (Digital)</span></span>
+          <span class="service-pill"><i class="fas fa-baby"></i><span data-lang="bn">আল্ট্রাসনো</span><span data-lang="en">Color Ultrasonography</span></span>
+          <span class="service-pill"><i class="fas fa-vial"></i><span data-lang="bn">হরমোন পরীক্ষা</span><span data-lang="en">Hormone Test</span></span>
+          <span class="service-pill"><i class="fas fa-shield-virus"></i><span data-lang="bn">ইমিউনোলজি</span><span data-lang="en">Immunology</span></span>
+          <span class="service-pill"><i class="fas fa-flask"></i><span data-lang="bn">বায়োকেমিস্ট্রি</span><span data-lang="en">Biochemistry</span></span>
+          <span class="service-pill"><i class="fas fa-microscope"></i><span data-lang="bn">সেরোলজি</span><span data-lang="en">Serology</span></span>
+          <span class="service-pill"><i class="fas fa-vials"></i><span data-lang="bn">সকল প্রকার প্যাথলজি</span><span data-lang="en">All Kinds of Pathology</span></span>
+          <span class="service-pill"><i class="fas fa-user-check"></i><span data-lang="bn">হেলথ চেকআপ</span><span data-lang="en">Pre-medical Checkup</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section fade-up">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><span data-lang="bn">আমাদের সেবা</span><span data-lang="en">Our Services</span></div>
+      <h2 class="section-title">
+        <span data-lang="bn">অত্যাধুনিক ডায়াগনস্টিক সেবা</span>
+        <span data-lang="en">Advanced Diagnostic Services</span>
+      </h2>
+      <p class="section-sub">
+        <span data-lang="bn">অত্যাধুনিক প্রযুক্তি ও অভিজ্ঞ চিকিৎসকদের সমন্বয়ে সর্বোচ্চ মানের স্বাস্থ্যসেবা প্রদান করছি আমরা।</span>
+        <span data-lang="en">We deliver the highest standard of healthcare combining cutting-edge technology with experienced medical professionals.</span>
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="s-icon"><i class="fas fa-x-ray"></i></div>
+        <h3><span data-lang="bn">ডিজিটাল এক্স-রে</span><span data-lang="en">Digital X-Ray</span></h3>
+        <p><span data-lang="bn">উচ্চ রেজল্যুশন ডিজিটাল রেডিওগ্রাফি — দ্রুত ও নির্ভুল ফলাফল।</span><span data-lang="en">High-resolution digital radiography — fast and accurate results.</span></p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon"><i class="fas fa-heartbeat"></i></div>
+        <h3><span data-lang="bn">ইসিজি</span><span data-lang="en">ECG (Digital)</span></h3>
+        <p><span data-lang="bn">কম্পিউটারাইজড ইসিজি ও বিশেষজ্ঞ হার্ট বিশ্লেষণ।</span><span data-lang="en">Computerized ECG with expert cardiac analysis.</span></p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon"><i class="fas fa-baby"></i></div>
+        <h3><span data-lang="bn">আল্ট্রাসনোগ্রাফি</span><span data-lang="en">Color Ultrasonography</span></h3>
+        <p><span data-lang="bn">আধুনিক কালার ডপলার ও ৪ডি সোনোগ্রাফি সুবিধা (Full HD)।</span><span data-lang="en">Modern Colour Doppler and 4D Sonography available (Full HD).</span></p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon"><i class="fas fa-vial"></i></div>
+        <h3><span data-lang="bn">হরমোন পরীক্ষা</span><span data-lang="en">Hormone Test</span></h3>
+        <p><span data-lang="bn">থাইরয়েড, ডায়াবেটিস ও অন্যান্য হরমোন এনালিসিস।</span><span data-lang="en">Thyroid, Diabetes, and other advanced hormone analysis.</span></p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon"><i class="fas fa-shield-virus"></i></div>
+        <h3><span data-lang="bn">ইমিউনোলজি</span><span data-lang="en">Immunology</span></h3>
+        <p><span data-lang="bn">রোগ প্রতিরোধ ক্ষমতা ও এলার্জি সংক্রান্ত পরীক্ষা।</span><span data-lang="en">Advanced immune system and allergy-related testing.</span></p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon"><i class="fas fa-flask"></i></div>
+        <h3><span data-lang="bn">বায়োকেমিস্ট্রি</span><span data-lang="en">Biochemistry</span></h3>
+        <p><span data-lang="bn">লিভার, কিডনি ও লিপিড প্রোফাইল পরীক্ষা।</span><span data-lang="en">Comprehensive liver, kidney, and lipid profile tests.</span></p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon"><i class="fas fa-microscope"></i></div>
+        <h3><span data-lang="bn">সেরোলজি</span><span data-lang="en">Serology</span></h3>
+        <p><span data-lang="bn">রক্তের সিরাম ও ইনফেকশন জনিত পরীক্ষা।</span><span data-lang="en">Blood serum analysis and infectious disease screening.</span></p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon"><i class="fas fa-vials"></i></div>
+        <h3><span data-lang="bn">সকল প্রকার প্যাথলজি</span><span data-lang="en">All Kinds of Pathology</span></h3>
+        <p><span data-lang="bn">রুটিন রক্ত, প্রস্রাব ও অন্যান্য সকল ল্যাব পরীক্ষা।</span><span data-lang="en">Routine blood, urine, and all other lab examinations.</span></p>
+      </div>
+      <div class="service-card">
+        <div class="s-icon"><i class="fas fa-user-check"></i></div>
+        <h3><span data-lang="bn">প্রি-মেডিক্যাল চেকআপ</span><span data-lang="en">Pre-medical Checkup</span></h3>
+        <p><span data-lang="bn">চাকুরি বা বিদেশ যাত্রার আগে সম্পূর্ণ স্বাস্থ্য পরীক্ষা।</span><span data-lang="en">Complete health screening for jobs or overseas travel.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section section-alt fade-up">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><span data-lang="bn">কেন আমরা</span><span data-lang="en">Why Choose Us</span></div>
+      <h2 class="section-title"><span data-lang="bn">আমাদের বেছে নেওয়ার কারণ</span><span data-lang="en">Reasons to Choose SA Digital Lab</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon teal"><i class="fas fa-microscope"></i></div>
+        <h4><span data-lang="bn">অত্যাধুনিক প্রযুক্তি</span><span data-lang="en">Latest Technology</span></h4>
+        <p><span data-lang="bn">সর্বশেষ ডিজিটাল যন্ত্রপাতিতে সর্বোচ্চ মানের পরীক্ষা।</span><span data-lang="en">Tests conducted with the latest digital equipment for maximum accuracy.</span></p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon gold"><i class="fas fa-user-md"></i></div>
+        <h4><span data-lang="bn">অভিজ্ঞ বিশেষজ্ঞ দল</span><span data-lang="en">Expert Medical Team</span></h4>
+        <p><span data-lang="bn">২০+ অভিজ্ঞ বিশেষজ্ঞ চিকিৎসক নিয়মিত সেবা দিচ্ছেন।</span><span data-lang="en">20+ experienced specialists providing regular care.</span></p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon green"><i class="fas fa-file-medical"></i></div>
+        <h4><span data-lang="bn">দ্রুত ডিজিটাল রিপোর্ট</span><span data-lang="en">Fast Digital Reports</span></h4>
+        <p><span data-lang="bn">২৪ ঘন্টার মধ্যে অনলাইনে রিপোর্ট ডেলিভারি।</span><span data-lang="en">Online report delivery within 24 hours.</span></p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon red"><i class="fas fa-home"></i></div>
+        <h4><span data-lang="bn">হোম কালেকশন</span><span data-lang="en">Home Collection</span></h4>
+        <p><span data-lang="bn">আপনার বাড়ি থেকে স্যাম্পল কালেকশনের সুবিধা।</span><span data-lang="en">Convenient sample collection from your home.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS -->
+<section id="doctors" class="section fade-up">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><span data-lang="bn">আমাদের চিকিৎসকমণ্ডলী</span><span data-lang="en">Our Doctors</span></div>
+      <h2 class="section-title"><span data-lang="bn">অভিজ্ঞ বিশেষজ্ঞ চিকিৎসক</span><span data-lang="en">Expert Medical Specialists</span></h2>
+      <p class="section-sub"><span data-lang="bn">নির্দিষ্ট সময়সূচীতে বিশেষজ্ঞ চিকিৎসকগণ সেবা প্রদান করছেন।</span><span data-lang="en">Specialist doctors attending patients on fixed schedules.</span></p>
+    </div>
+    <div class="doctors-grid">
+
+      <div class="doctor-card">
+        <div class="doc-avatar"><i class="fas fa-user-md"></i></div>
+        <div class="doc-name"><span data-lang="bn">ডাঃ মুহাম্মদ জামিল আহমেদ</span><span data-lang="en">Dr. Muhammad Jamil Ahmed</span></div>
+        <div class="doc-degree" style="font-size:.85rem;color:#666;margin-bottom:5px;">
+          <span data-lang="bn">এম.বি.বি.এস; বিসিএস (স্বাস্থ্য), এমডি (নিউরোলজি)</span>
+          <span data-lang="en">MBBS, BCS (Health), MD (Neurology)</span>
+        </div>
+        <div class="doc-spec"><span data-lang="bn">নিউরোলজি ও মেডিসিন বিশেষজ্ঞ</span><span data-lang="en">Neurology & Medicine Specialist</span></div>
+        <div class="doc-designation" style="margin-top:10px;font-weight:bold;color:#d32f2f;">
+          <span data-lang="bn">সহকারী অধ্যাপক, নিউরোলজি বিভাগ</span>
+          <span data-lang="en">Assistant Professor, Dept. of Neurology</span>
+        </div>
+        <div class="doc-hospital" style="font-size:.8rem;margin-top:5px;">
+          <span data-lang="bn">সিলেট এমএজি ওসমানী মেডিকেল কলেজ হাসপাতাল</span>
+          <span data-lang="en">Sylhet MAG Osmani Medical College Hospital</span>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doc-avatar"><i class="fas fa-user-md"></i></div>
+        <div class="doc-name"><span data-lang="bn">ডাঃ জুয়েল রায়</span><span data-lang="en">Dr. Juel Ray</span></div>
+        <div class="doc-degree" style="font-size:.85rem;color:#666;margin-bottom:5px;">
+          <span data-lang="bn">এম.বি.বি.এস; বি.সি.এস (স্বাস্থ্য), এফ.সি.পি.এস (মেডিসিন), এম.এ.সি.পি (আমেরিকা)</span>
+          <span data-lang="en">MBBS, BCS (Health), FCPS (Medicine), MACP (USA)</span>
+        </div>
+        <div class="doc-spec"><span data-lang="bn">মেডিসিন, লিভার ও পরিপাকতন্ত্র বিশেষজ্ঞ</span><span data-lang="en">Medicine, Liver & Gastro Specialist</span></div>
+        <div class="doc-designation" style="margin-top:10px;font-weight:bold;color:#d32f2f;">
+          <span data-lang="bn">সহকারী অধ্যাপক (মেডিসিন)</span>
+          <span data-lang="en">Assistant Professor (Medicine)</span>
+        </div>
+        <div class="doc-hospital" style="font-size:.8rem;margin-top:5px;color:#555;">
+          <span data-lang="bn">সিলেট এম.এ.জি ওসমানী মেডিকেল কলেজ হাসপাতাল, সিলেট।</span>
+          <span data-lang="en">Sylhet MAG Osmani Medical College Hospital, Sylhet.</span>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doc-avatar"><i class="fas fa-user-md"></i></div>
+        <div class="doc-name"><span data-lang="bn">ডাঃ ঊর্মি আচার্য্য</span><span data-lang="en">Dr. Urmi Acharya</span></div>
+        <div class="doc-degree" style="font-size:.85rem;color:#666;margin-bottom:5px;">
+          <span data-lang="bn">এম.বি.বি.এস, বি.সি.এস (স্বাস্থ্য), এফ.সি.পি.এস (শিশু), এম.এ.সি.পি (আমেরিকা)</span>
+          <span data-lang="en">MBBS, BCS (Health), FCPS (Pediatrics), MACP (USA)</span>
+        </div>
+        <div class="doc-spec"><span data-lang="bn">নবজাতক, শিশু ও কিশোর রোগ বিশেষজ্ঞ</span><span data-lang="en">Neonatal, Child & Adolescent Specialist</span></div>
+        <div class="doc-designation" style="margin-top:10px;font-weight:bold;color:#d32f2f;">
+          <span data-lang="bn">সহকারী অধ্যাপক (পেডিয়াট্রিক্স)</span>
+          <span data-lang="en">Assistant Professor (Pediatrics)</span>
+        </div>
+        <div class="doc-hospital" style="font-size:.8rem;margin-top:5px;color:#555;">
+          <span data-lang="bn">সিলেট এম.এ.জি ওসমানী মেডিকেল কলেজ হাসপাতাল, সিলেট।</span>
+          <span data-lang="en">Sylhet MAG Osmani Medical College Hospital, Sylhet.</span>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doc-avatar"><i class="fas fa-user-md"></i></div>
+        <div class="doc-name"><span data-lang="bn">ডাঃ শায়লা পারভীন</span><span data-lang="en">Dr. Shayla Parveen</span></div>
+        <div class="doc-degree" style="font-size:.85rem;color:#666;margin-bottom:5px;">
+          <span data-lang="bn">এম.বি.বি.এস (সিওমেক), ডিজিও (গাইনী এন্ড অবস্), বিএসএমএমইউ</span>
+          <span data-lang="en">MBBS (SOMCH), DGO (Gynae & Obs), BSMMU</span>
+        </div>
+        <div class="doc-spec"><span data-lang="bn">প্রসূতি ও স্ত্রীরোগ বিশেষজ্ঞ সার্জন</span><span data-lang="en">Gynaecology & Obstetrics Specialist Surgeon</span></div>
+        <div class="doc-designation" style="margin-top:10px;font-weight:bold;color:#d32f2f;">
+          <span data-lang="bn">ডিজিও (গাইনী এন্ড অবস্)</span>
+          <span data-lang="en">DGO (Gynae & Obs)</span>
+        </div>
+        <div class="doc-hospital" style="font-size:.8rem;margin-top:5px;color:#555;">
+          <span data-lang="bn">সিলেট এম.এ.জি ওসমানী মেডিকেল কলেজ হাসপাতাল, সিলেট।</span>
+          <span data-lang="en">Sylhet MAG Osmani Medical College Hospital, Sylhet.</span>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doc-avatar"><i class="fas fa-user-md"></i></div>
+        <div class="doc-name"><span data-lang="bn">ডাঃ মোঃ আলমাহির ফেরদৌস</span><span data-lang="en">Dr. Md. Almahir Ferdous</span></div>
+        <div class="doc-degree" style="font-size:.85rem;color:#666;margin-bottom:5px;">
+          <span data-lang="bn">এমবিবিএস (এসইউএসটি), ডি.অরথো. (ইউ.কে), এমপিএইচ (ঢাকা), আরএসপিএইচ (লন্ডন)</span>
+          <span data-lang="en">MBBS (SUST), D.Ortho (UK), MPH (Dhaka), RSPH (London)</span>
+        </div>
+        <div class="doc-spec"><span data-lang="bn">বাত ব্যথা, হাড়ভাঙ্গা, অর্থোপেডিক্স বিশেষজ্ঞ</span><span data-lang="en">Orthopaedics, Trauma & Joint Specialist</span></div>
+        <div class="doc-designation" style="margin-top:10px;font-weight:bold;color:#d32f2f;">
+          <span data-lang="bn">কনসালটেন্ট, অর্থোপেডিক্স</span>
+          <span data-lang="en">Consultant, Orthopaedics</span>
+        </div>
+        <div class="doc-extra" style="font-size:.8rem;margin-top:5px;color:#2e7d32;font-style:italic;">
+          <span data-lang="bn">পঙ্গু ও আঘাতজনিত রোগ বিশেষজ্ঞ</span>
+          <span data-lang="en">Specialist in Trauma & Physical Disability</span>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doc-avatar"><i class="fas fa-user-md"></i></div>
+        <div class="doc-name"><span data-lang="bn">ডাঃ মানস কান্তি সিংহ</span><span data-lang="en">Dr. Manas Kanti Singha</span></div>
+        <div class="doc-degree" style="font-size:.85rem;color:#666;margin-bottom:5px;">
+          <span data-lang="bn">এমবিবিএস, বিসিএস (স্বাস্থ্য), ডি.এল.ও (বঙ্গবন্ধু মেডিকেল বিশ্ববিদ্যালয়)</span>
+          <span data-lang="en">MBBS, BCS (Health), DLO (BSMMU)</span>
+        </div>
+        <div class="doc-spec"><span data-lang="bn">নাক, কান, গলা ও হেড-নেক সার্জারী</span><span data-lang="en">ENT & Head-Neck Surgery Specialist</span></div>
+        <div class="doc-designation" style="margin-top:10px;font-weight:bold;color:#d32f2f;">
+          <span data-lang="bn">বিশেষজ্ঞ সার্জন, আই.এম.ও-ইএনটি</span>
+          <span data-lang="en">Specialist Surgeon, IMO-ENT</span>
+        </div>
+        <div class="doc-extra" style="font-size:.8rem;margin-top:5px;color:#2e7d32;">
+          <div style="margin-bottom:3px;">
+            <span data-lang="bn">সিলেট ওসমানী মেডিকেল কলেজ ও হাসপাতাল</span>
+            <span data-lang="en">Sylhet Osmani Medical College & Hospital</span>
+          </div>
+          <div style="font-style:italic;">
+            <i class="far fa-clock"></i>
+            <span data-lang="bn">প্রতিদিন বিকাল ৪টা - রাত ৮টা</span>
+            <span data-lang="en">Daily 4 PM – 8 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doc-avatar"><i class="fas fa-user-md"></i></div>
+        <div class="doc-name"><span data-lang="bn">ডাঃ ই এইচ মজুমদার</span><span data-lang="en">Dr. E. H. Mazumdar</span></div>
+        <div class="doc-degree" style="font-size:.85rem;color:#666;margin-bottom:5px;">
+          <span data-lang="bn">এমবিবিএস (ঢাকা), ডিও (ডি.ইউ)</span>
+          <span data-lang="en">MBBS (Dhaka), DO (DU)</span>
+        </div>
+        <div class="doc-spec"><span data-lang="bn">কনসালটেন্ট ও চক্ষু বিশেষজ্ঞ সার্জন</span><span data-lang="en">Consultant & Eye Specialist Surgeon</span></div>
+        <div class="doc-designation" style="margin-top:10px;font-weight:bold;color:#d32f2f;">
+          <span data-lang="bn">সহযোগী অধ্যাপক, নর্থ ইস্ট মেডিকেল কলেজ</span>
+          <span data-lang="en">Associate Professor, North East Medical College</span>
+        </div>
+        <div class="doc-extra" style="font-size:.8rem;margin-top:5px;color:#2e7d32;font-style:italic;">
+          <div style="margin-bottom:3px;">
+            <span data-lang="bn">সিলেট এমএজি ওসমানী মেডিকেল কলেজ (অবঃ)</span>
+            <span data-lang="en">Sylhet MAG Osmani Medical College (Rtd.)</span>
+          </div>
+          <div>
+            <i class="far fa-clock"></i>
+            <span data-lang="bn">প্রতিদিন বিকাল ৫টা - রাত ৮টা</span>
+            <span data-lang="en">Daily 5 PM – 8 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="doctor-card">
+        <div class="doc-avatar"><i class="fas fa-user-md"></i></div>
+        <div class="doc-name"><span data-lang="bn">ডাঃ উজ্জ্বল কান্তি দত্ত</span><span data-lang="en">Dr. Ujjal Kanti Das</span></div>
+        <div class="doc-degree" style="font-size:.85rem;color:#666;margin-bottom:5px;">
+          <span data-lang="bn">এমবিবিএস, বিসিএস (স্বাস্থ্য), ডিডিভি, এমসিপিএস (ডার্মাটোলজি), সিসিডি (বারডেম)</span>
+          <span data-lang="en">MBBS, BCS (Health), DDV (BSMMU), MCPS (Dermatology), CCD (BIRDEM)</span>
+        </div>
+        <div class="doc-spec"><span data-lang="bn">চর্ম, যৌন রোগ, এলার্জি ও লেজার বিশেষজ্ঞ</span><span data-lang="en">Skin, Sexual Diseases, Allergy & Laser Specialist</span></div>
+        <div class="doc-designation" style="margin-top:10px;font-weight:bold;color:#d32f2f;">
+          <span data-lang="bn">সহকারী অধ্যাপক, আই.এইচ.টি, সিলেট</span>
+          <span data-lang="en">Assistant Professor, IHT, Sylhet</span>
+        </div>
+        <div class="doc-extra" style="font-size:.8rem;margin-top:5px;color:#2e7d32;font-style:italic;">
+          <i class="far fa-clock"></i>
+          <span data-lang="bn">প্রতিদিন বিকাল ৪টা - রাত ৮টা (শুক্রবার বন্ধ)</span>
+          <span data-lang="en">Daily 4 PM – 8 PM (Friday Closed)</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="more-docs-banner">
+      <div>
+        <strong><span data-lang="bn">আরও বিশেষজ্ঞ চিকিৎসক</span><span data-lang="en">More Specialist Doctors</span></strong>
+        <p><span data-lang="bn">সেরিয়ালের জন্য আমাদের কল সেন্টারে যোগাযোগ করুন।</span><span data-lang="en">Contact our call center for serial and appointments.</span></p>
+      </div>
+      <div class="badge-count"><i class="fas fa-phone"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="timing" class="section section-alt fade-up">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><span data-lang="bn">সময়সূচী</span><span data-lang="en">Schedule</span></div>
+      <h2 class="section-title"><span data-lang="bn">ওপিডি ও ল্যাব সময়সূচী</span><span data-lang="en">OPD & Lab Schedule</span></h2>
+    </div>
+    <div class="schedule-flex">
+      <div class="schedule-main">
+        <h3><i class="fas fa-calendar-alt"></i>
+          <span data-lang="bn">সাপ্তাহিক সময়সূচী</span>
+          <span data-lang="en">Weekly Schedule</span>
+        </h3>
+        <div class="s-row">
+          <span class="s-day"><span data-lang="bn">শনি - বৃহস্পতি</span><span data-lang="en">Sat – Thurs</span></span>
+          <span class="s-time"><span data-lang="bn">সকাল ৯:০০ – রাত ৯:০০</span><span data-lang="en">9:00 AM – 9:00 PM</span></span>
+        </div>
+        <div class="s-row">
+          <span class="s-day"><span data-lang="bn">শুক্রবার</span><span data-lang="en">Friday</span></span>
+          <span class="s-time"><span data-lang="bn">জরুরী সেবা (অন-কল ডাক্তার)</span><span data-lang="en">Emergency only (On-call doctor)</span></span>
+        </div>
+        <div class="s-row">
+          <span class="s-day"><span data-lang="bn">রিপোর্ট ডেলিভারি</span><span data-lang="en">Report Delivery</span></span>
+          <span class="s-time"><span data-lang="bn">২৪ ঘন্টার মধ্যে ডিজিটাল</span><span data-lang="en">Within 24 hrs — Digital</span></span>
+        </div>
+        <div class="s-row">
+          <span class="s-day"><span data-lang="bn">জরুরী হেল্পলাইন</span><span data-lang="en">Emergency Helpline</span></span>
+          <span class="s-time"><span data-lang="bn">০১৬৩৫-৫৭০৮৭১, ০১৬৩৫-৫৭০৮৭২</span><span data-lang="en">01635-570871, 01635-570872</span></span>
+        </div>
+      </div>
+      <div class="blood-panel">
+        <h3><i class="fas fa-syringe"></i>
+          <span data-lang="bn">ব্লাড কালেকশন</span>
+          <span data-lang="en">Blood Collection</span>
+        </h3>
+        <div class="blood-time"><span data-lang="bn">সকাল ৭:০০ – ১১:০০</span><span data-lang="en">7:00 AM – 11:00 AM</span></div>
+        <div class="blood-note"><span data-lang="bn">বিকাল ৪:০০ – ৭:০০ (পূর্ব নিবন্ধন)</span><span data-lang="en">4:00 PM – 7:00 PM (pre-registration)</span></div>
+        <hr class="blood-divider">
+        <div class="blood-feature"><i class="fas fa-home"></i><span><span data-lang="bn">হোম কালেকশন সুবিধা উপলব্ধ</span><span data-lang="en">Home collection available</span></span></div>
+        <div class="blood-feature"><i class="fas fa-flask"></i><span><span data-lang="bn">ডায়াবেটিস, লিপিড প্রোফাইল, থাইরয়েড ও সব ধরনের রক্ত পরীক্ষা</span><span data-lang="en">Diabetes, Lipid Profile, Thyroid & all blood tests</span></span></div>
+        <div class="blood-feature"><i class="fas fa-bolt"></i><span><span data-lang="bn">জরুরী রিপোর্ট: ৬–১২ ঘন্টা</span><span data-lang="en">Urgent report: 6–12 hours</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section fade-up">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><span data-lang="bn">যোগাযোগ</span><span data-lang="en">Contact Us</span></div>
+      <h2 class="section-title"><span data-lang="bn">সরাসরি যোগাযোগ করুন</span><span data-lang="en">Get In Touch</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3><span data-lang="bn">আমাদের খুঁজে পান</span><span data-lang="en">Find Us</span></h3>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="ci-text">
+            <strong><span data-lang="bn">ঠিকানা</span><span data-lang="en">Address</span></strong>
+            <span>
+              <span data-lang="bn">৬৮, ৬৯, ৭০ পূর্ব স্টেডিয়াম মার্কেট (নিচ তলা, মসজিদের পাশে), সিলেট</span>
+              <span data-lang="en">68, 69, 70 Purbo Stadium Market (Ground Floor, Beside Mosque), Sylhet</span>
+            </span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-phone"></i></div>
+          <div class="ci-text">
+            <strong><span data-lang="bn">ফোন</span><span data-lang="en">Phone</span></strong>
+            <span>
+              <span data-lang="bn">০১৬৩৫-৫৭০৮৭১, ০১৬৩৫-৫৭০৮৭২</span>
+              <span data-lang="en">01635-570871, 01635-570872</span>
+            </span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+          <div class="ci-text">
+            <strong><span data-lang="bn">ইমেইল</span><span data-lang="en">Email</span></strong>
+            <span>sadigitallab75@gmail.com</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-clock"></i></div>
+          <div class="ci-text">
+            <strong><span data-lang="bn">সময়</span><span data-lang="en">Hours</span></strong>
+            <span><span data-lang="bn">শনি - বৃহস্পতি: সকাল ৯টা – রাত ৯টা</span><span data-lang="en">Sat – Thurs: 9 AM – 9 PM</span></span>
+          </div>
+        </div>
+        <div class="social-row">
+          <a href="https://www.facebook.com/share/1GZu35nBdQ/" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/8801635570872" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/your-profile" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@your-channel" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3><i class="fas fa-calendar-check" style="color:var(--teal-500);margin-right:10px"></i>
+          <span data-lang="bn">অ্যাপয়েন্টমেন্ট বুক করুন</span>
+          <span data-lang="en">Book an Appointment</span>
+        </h3>
+        <div class="form-group">
+          <label><span data-lang="bn">আপনার নাম</span><span data-lang="en">Your Name</span></label>
+          <input type="text" id="fName" placeholder="" />
+        </div>
+        <div class="form-group">
+          <label><span data-lang="bn">মোবাইল নম্বর</span><span data-lang="en">Mobile Number</span></label>
+          <input type="tel" id="fPhone" placeholder="01XXXXXXXXX" />
+        </div>
+        <div class="form-group">
+          <label><span data-lang="bn">সেবা নির্বাচন করুন</span><span data-lang="en">Select Service</span></label>
+          <select id="fService">
+            <option value="" disabled selected></option>
+            <option data-lang-opt-bn="ডিজিটাল এক্স-রে" data-lang-opt-en="Digital X-Ray"></option>
+            <option data-lang-opt-bn="ইসিজি" data-lang-opt-en="ECG"></option>
+            <option data-lang-opt-bn="আল্ট্রাসনোগ্রাফি" data-lang-opt-en="Ultrasonography"></option>
+            <option data-lang-opt-bn="ব্লাড টেস্ট" data-lang-opt-en="Blood Test"></option>
+            <option data-lang-opt-bn="হরমোন পরীক্ষা" data-lang-opt-en="Hormone Test"></option>
+            <option data-lang-opt-bn="অন্যান্য" data-lang-opt-en="Other"></option>
+          </select>
+        </div>
+        <button class="form-submit" onclick="submitForm()">
+          <i class="fas fa-paper-plane"></i>
+          <span data-lang="bn">অনুরোধ পাঠান</span>
+          <span data-lang="en">Send Request</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section id="aboutus" class="section section-alt fade-up">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><span data-lang="bn">পরিচিতি</span><span data-lang="en">Introduction</span></div>
+      <h2 class="section-title">
+        <span data-lang="bn">এস.এ ডিজিটাল ল্যাব সম্পর্কে</span>
+        <span data-lang="en">About SA Digital Lab</span>
+      </h2>
+    </div>
+    <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
+      <div class="about-image">
+        <img src="images/image-1.jpeg" alt="SA Digital Lab" style="width:100%;border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);">
+      </div>
+      <div class="about-text">
+        <h3 style="color:var(--teal-900);margin-bottom:15px;">
+          <span data-lang="bn">আমাদের পথচলা</span>
+          <span data-lang="en">Our Journey</span>
+        </h3>
+        <p style="margin-bottom:20px;color:var(--gray-700);">
+          <span data-lang="bn">SA Digital Lab ২০২১ সালে সিলেটের প্রাণকেন্দ্রে প্রতিষ্ঠিত হয়। উন্নত প্রযুক্তি এবং নির্ভুল রিপোর্টিংয়ের মাধ্যমে আমরা গত কয়েক বছর ধরে সিলেটের মানুষের আস্থা অর্জন করে আসছি। আমাদের ল্যাবটি সরকারি লাইসেন্সপ্রাপ্ত (লাইসেন্স নং: HSM৪৫২১৪৯০) এবং সকল আন্তর্জাতিক মানদণ্ড মেনে পরিচালিত।</span>
+          <span data-lang="en">SA Digital Lab was established in 2021 in the heart of Sylhet. We have been gaining the trust of the people of Sylhet for several years through advanced technology and accurate reporting. Our lab is government licensed (License No: HSM4521490) and operated according to international standards.</span>
+        </p>
+        <div class="license-badge" style="display:inline-flex;align-items:center;gap:10px;background:var(--teal-100);padding:10px 20px;border-radius:var(--radius-md);color:var(--teal-900);font-weight:bold;">
+          <i class="fas fa-certificate" style="color:var(--gold);"></i>
+          <span><span data-lang="bn">সরকারি লাইসেন্সপ্রাপ্ত প্রতিষ্ঠান</span><span data-lang="en">Govt. Licensed Institution</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="governing-body" style="margin-top:60px;">
+      <h3 style="text-align:center;margin-bottom:40px;font-family:'Playfair Display',serif;">
+        <span data-lang="bn">পরিচালনা পর্ষদ</span>
+        <span data-lang="en">Governing Body</span>
+      </h3>
+      <div class="doctors-grid">
+        <div class="doctor-card">
+          <div class="doc-avatar"><i class="fas fa-user-shield"></i></div>
+          <div class="doc-name"><span data-lang="bn">অলক পাল</span><span data-lang="en">Alok Paul</span></div>
+          <div class="doc-spec"><span data-lang="bn">চেয়ারম্যান</span><span data-lang="en">Chairman</span></div>
+          <p style="font-size:.85rem;color:var(--gray-500);padding:0 10px;">
+            <span data-lang="bn">গভর্নিং বডির প্রধান হিসেবে প্রতিষ্ঠান পরিচালনা করছেন।</span>
+            <span data-lang="en">Leading the institution as the head of the governing body.</span>
+          </p>
+        </div>
+        <div class="doctor-card">
+          <div class="doc-avatar"><i class="fas fa-user-tie"></i></div>
+          <div class="doc-name"><span data-lang="bn">সুমন কান্তি পাল</span><span data-lang="en">Sumon Kanthi Paul</span></div>
+          <div class="doc-spec"><span data-lang="bn">প্রধান নির্বাহী কর্মকর্তা (CEO)</span><span data-lang="en">Chief Executive Officer</span></div>
+          <p style="font-size:.85rem;color:var(--gray-500);padding:0 10px;">
+            <span data-lang="bn">প্রতিষ্ঠানের সার্বিক উন্নয়ন ও সেবার মান নিশ্চিতে নিরলস কাজ করছেন।</span>
+            <span data-lang="en">Working tirelessly to ensure overall development and quality of service.</span>
+          </p>
+        </div>
+        <div class="doctor-card">
+          <div class="doc-avatar"><i class="fas fa-users-cog"></i></div>
+          <div class="doc-name"><span data-lang="bn">শেখ শাহনূর সোলমান</span><span data-lang="en">Shekh Shahnur Sulman</span></div>
+          <div class="doc-spec"><span data-lang="bn">প্রধান জনবল কর্মকর্তা (CHRO)</span><span data-lang="en">Chief Human Resources Officer (CHRO)</span></div>
+          <p style="font-size:.85rem;color:var(--gray-500);padding:0 10px;margin-top:10px;">
+            <span data-lang="bn">দক্ষ জনবল গঠন এবং আদর্শ কর্মপরিবেশ নিশ্চিত করতে কাজ করছেন।</span>
+            <span data-lang="en">Focused on building a skilled workforce and ensuring an ideal work environment.</span>
+          </p>
+        </div>
+        <div class="doctor-card">
+          <div class="doc-avatar"><i class="fas fa-user-tie"></i></div>
+          <div class="doc-name"><span data-lang="bn">মেহেদী হাসান শাকিল</span><span data-lang="en">Mehedi Hasan Shakil</span></div>
+          <div class="doc-spec"><span data-lang="bn">ব্যবস্থাপক</span><span data-lang="en">Manager</span></div>
+          <p style="font-size:.85rem;color:var(--gray-500);padding:0 10px;margin-top:10px;">
+            <span data-lang="bn">প্রতিষ্ঠানের দীর্ঘমেয়াদী লক্ষ্য নির্ধারণ ও নীতিনির্ধারণী সিদ্ধান্ত গ্রহণে নিয়োজিত।</span>
+            <span data-lang="en">Responsible for strategic long-term goals and leading high-level decision-making.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEVELOPER SECTION (UPDATED) ===== -->
+<section id="developer" class="section fade-up">
+  <div class="container">
+    <div class="dev-section-wrap">
+      <div class="dev-inner">
+
+        <!-- icon -->
+        <div class="dev-avatar">
+          <i class="fas fa-code"></i>
+        </div>
+
+        <!-- main body -->
+        <div class="dev-body">
+          <div class="dev-title-row">
+            <span class="dev-title">
+              <span data-lang="bn">ওয়েব ডিজাইন ও টেকনিক্যাল রক্ষণাবেক্ষণ</span>
+              <span data-lang="en">Web Design & Technical Maintenance</span>
+            </span>
+            <span class="dev-badge">WEB MASTER</span>
+          </div>
+          <p class="dev-desc">
+            <span data-lang="bn">এই ডিজিটাল প্ল্যাটফর্মটির ডিজাইন, ডেভেলপমেন্ট এবং কারিগরি রক্ষণাবেক্ষণে নিয়োজিত আছেন <strong>মোঃ নাজিবুর রহমান</strong>। ওয়েবসাইট বা ডিজিটাল সেবা সংক্রান্ত যেকোনো প্রযুক্তিগত সহায়তার জন্য সরাসরি যোগাযোগ করুন।</span>
+            <span data-lang="en">This digital platform is designed, developed, and maintained by <strong>Md. Najibur Rahman</strong>. For any technical assistance related to the website or digital services, please reach out directly.</span>
+          </p>
+          <div class="dev-contacts-row">
+            <a href="tel:01635570871" class="dev-contact-btn">
+              <i class="fas fa-phone-alt"></i>
+              <span>01635-570871</span>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=najibur135@gmail.com&su=Technical Support - SA Digital Lab" target="_blank" class="dev-contact-btn">
+              <i class="fas fa-envelope"></i>
+              <span>najibur135@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- right divider + meta -->
+        <div class="dev-divider"></div>
+        <div class="dev-meta">
+          <div class="dev-meta-item">
+            <i class="fas fa-globe"></i>
+            <span>SA Digital Lab</span>
+          </div>
+          <div class="dev-meta-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Sylhet, Bangladesh</span>
+          </div>
+          <div class="dev-meta-item">
+            <i class="fas fa-calendar-alt"></i>
+            <span>© 2026</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:white;">
+          <span style="color:var(--teal-300)">SA</span> Digital Lab
+        </div>
+        <p><span data-lang="bn">মানুষের সেবায় নিবেদিত একটি পূর্ণাঙ্গ ডিজিটাল ডায়াগনস্টিক সেন্টার।</span><span data-lang="en">A full-service digital diagnostic centre dedicated to your health.</span></p>
+      </div>
+      <div>
+        <h4><span data-lang="bn">গুরুত্বপূর্ণ লিংক</span><span data-lang="en">Quick Links</span></h4>
+        <ul>
+          <li><a href="#home"><span data-lang="bn">হোম</span><span data-lang="en">Home</span></a></li>
+          <li><a href="#services"><span data-lang="bn">সেবাসমূহ</span><span data-lang="en">Services</span></a></li>
+          <li><a href="#doctors"><span data-lang="bn">চিকিৎসক</span><span data-lang="en">Doctors</span></a></li>
+          <li><a href="#contact"><span data-lang="bn">যোগাযোগ</span><span data-lang="en">Contact</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span data-lang="bn">আমাদের সেবা</span><span data-lang="en">Services</span></h4>
+        <ul>
+          <li><a href="#services"><span data-lang="bn">ডিজিটাল এক্স-রে</span><span data-lang="en">Digital X-Ray</span></a></li>
+          <li><a href="#services"><span data-lang="bn">ইসিজি</span><span data-lang="en">ECG</span></a></li>
+          <li><a href="#services"><span data-lang="bn">আল্ট্রাসনোগ্রাফি</span><span data-lang="en">Ultrasonography</span></a></li>
+          <li><a href="#services"><span data-lang="bn">ব্লাড টেস্ট</span><span data-lang="en">Blood Test</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span data-lang="bn">যোগাযোগ</span><span data-lang="en">Contact</span></h4>
+        <ul>
+          <li><a href="tel:01635570871">০১৬৩৫-৫৭০৮৭১, ০১৬৩৫-৫৭০৮৭২</a></li>
+          <li><a href="mailto:sadigitallab75@gmail.com">sadigitallab75@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span data-lang="bn">২০২৬</span><span data-lang="en">2026</span>
+        <span>SA Digital Lab</span> —
+        <span data-lang="bn">সকল স্বত্ব সংরক্ষিত।</span>
+        <span data-lang="en">All rights reserved.</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('en', lang === 'en');
+    document.getElementById('btnBn').classList.toggle('active', lang === 'bn');
+    document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang === 'en' ? 'en' : 'bn';
+    updateSelectOptions(lang);
+    updatePlaceholders(lang);
+  }
+  function updateSelectOptions(lang) {
+    const sel = document.getElementById('fService');
+    if (!sel) return;
+    const opts = sel.querySelectorAll('option[data-lang-opt-bn]');
+    const defaultOpt = sel.querySelector('option[value=""]');
+    if (defaultOpt) defaultOpt.textContent = lang === 'en' ? 'Select a service...' : 'সেবা নির্বাচন করুন...';
+    opts.forEach(opt => { opt.textContent = lang === 'en' ? opt.dataset.langOptEn : opt.dataset.langOptBn; });
+  }
+  function updatePlaceholders(lang) {
+    const nameInput = document.getElementById('fName');
+    if (nameInput) nameInput.placeholder = lang === 'en' ? 'Enter your full name' : 'আপনার পুরো নাম লিখুন';
+  }
+  updateSelectOptions('bn');
+  updatePlaceholders('bn');
+
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  function submitForm() {
+    const name = document.getElementById('fName').value.trim();
+    const phone = document.getElementById('fPhone').value.trim();
+    const isBn = !document.body.classList.contains('en');
+    if (!name || !phone) {
+      showToast(isBn ? 'নাম ও মোবাইল নম্বর পূরণ করুন' : 'Please fill in name and phone number');
+      return;
+    }
+    showToast(isBn ? '✓ অনুরোধ গৃহীত হয়েছে! আমরা শীঘ্রই যোগাযোগ করব।' : '✓ Request received! We will contact you soon.');
+    document.getElementById('fName').value = '';
+    document.getElementById('fPhone').value = '';
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
