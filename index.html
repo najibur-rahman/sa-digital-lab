@@ -329,6 +329,88 @@
       border-radius: 14px; font-family: 'Playfair Display', serif; white-space: nowrap;
     }
 
+    /* PATHOLOGIST SECTION */
+.pathologist-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.pathologist-card{
+  background:#fff;
+  border-radius:20px;
+  padding:30px 25px;
+  text-align:center;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  transition:.3s ease;
+  border:1px solid #f1f1f1;
+}
+
+.pathologist-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.path-avatar{
+  width:90px;
+  height:90px;
+  margin:auto;
+  border-radius:50%;
+  background:linear-gradient(135deg,#d32f2f,#ff6b6b);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:36px;
+  margin-bottom:20px;
+}
+
+.path-name{
+  font-size:1.25rem;
+  font-weight:700;
+  color:#222;
+  margin-bottom:10px;
+}
+
+.path-degree{
+  font-size:.9rem;
+  color:#666;
+  margin-bottom:12px;
+}
+
+.path-spec{
+  color:#d32f2f;
+  font-weight:600;
+  margin-bottom:15px;
+}
+
+.path-designation{
+  font-weight:700;
+  color:#2e7d32;
+  margin-bottom:10px;
+}
+
+.path-hospital{
+  font-size:.85rem;
+  color:#555;
+}
+
+
+/* SONOLOGIST CARD 2 COLUMN */
+.sonologist-card{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:25px;
+  margin-top:40px;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+  .sonologist-card{
+    grid-template-columns:1fr;
+  }
+}
     /* ===== SCHEDULE ===== */
     .schedule-flex { display: flex; gap: 28px; flex-wrap: wrap; }
     .schedule-main {
@@ -623,7 +705,7 @@
     <div class="hero-content">
       <div class="hero-badge">
         <i class="fas fa-heartbeat"></i>
-        <span data-lang="bn">সিলেটের বিশ্বস্ত ডায়াগনস্টিক সেন্টার</span>
+        <span data-lang="bn">একটি স্বয়ংসম্পন্ন ডায়াগনস্টিক সেন্টার</span>
         <span data-lang="en">Sylhet's Trusted Diagnostic Centre</span>
       </div>
       <h1>
@@ -955,12 +1037,173 @@
     <div class="more-docs-banner">
       <div>
         <strong><span data-lang="bn">আরও বিশেষজ্ঞ চিকিৎসক</span><span data-lang="en">More Specialist Doctors</span></strong>
-        <p><span data-lang="bn">সেরিয়ালের জন্য আমাদের কল সেন্টারে যোগাযোগ করুন।</span><span data-lang="en">Contact our call center for serial and appointments.</span></p>
+        <p><span data-lang="bn">সিরিয়ালের জন্য আমাদের কল সেন্টারে যোগাযোগ করুন।</span><span data-lang="en">Contact our call center for serial and appointments.</span></p>
       </div>
       <div class="badge-count"><i class="fas fa-phone"></i></div>
     </div>
   </div>
 </section>
+
+
+<!-- PATHOLOGIST SECTION -->
+<section id="pathologist" class="section fade-up">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-tag">
+        <span data-lang="bn">আমাদের প্যাথলজিস্ট</span>
+        <span data-lang="en">Our Pathologists</span>
+      </div>
+
+      <h2 class="section-title">
+        <span data-lang="bn">অভিজ্ঞ প্যাথলজি বিশেষজ্ঞ</span>
+        <span data-lang="en">Experienced Pathology Specialists</span>
+      </h2>
+
+      <p class="section-sub">
+        <span data-lang="bn">আধুনিক প্রযুক্তির মাধ্যমে নির্ভুল পরীক্ষা ও রিপোর্ট প্রদান করা হয়।</span>
+        <span data-lang="en">Accurate diagnostic testing and reporting with modern technology.</span>
+      </p>
+    </div>
+
+    <div class="pathologist-grid">
+
+      <!-- CARD -->
+      <div class="pathologist-card">
+
+        <div class="path-avatar">
+          <i class="fas fa-vials"></i>
+        </div>
+
+        <div class="path-name">
+          <span data-lang="bn">ডাঃ মোঃ মিজানুর রহমান</span>
+          <span data-lang="en">Dr. Md. Mizanur Rahman</span>
+        </div>
+
+        <div class="path-degree">
+          <span data-lang="bn">এমবিবিএস, বিসিএস (স্বাস্থ্য)</span>
+          <span data-lang="en">MBBS, BCS (Health)</span>
+        </div>
+
+        <div class="path-spec">
+          <span data-lang="bn">এম.ফিল ইন মাইক্রোবায়োলজি (বিএসএমএমইউ)</span>
+          <span data-lang="en">M. Phil in Microbiology(BSMMU)</span>
+        </div>
+
+        <div class="path-designation">
+          <span data-lang="bn">সহকারী অধ্যাপক</span>
+          <span data-lang="en">Assistant Professor</span>
+        </div>
+
+        <div class="path-designation">
+          <span data-lang="bn">সিলেট ওসমানী মেডিকেল কলেজ</span>
+          <span data-lang="en">Sylhet Osmani Medical College<span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- SONOLOGIST SECTION -->
+<section id="sonologist" class="section fade-up">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-tag">
+        <span data-lang="bn">আমাদের সোনোলজিস্ট</span>
+        <span data-lang="en">Our Sonologists</span>
+      </div>
+
+      <h2 class="section-title">
+        <span data-lang="bn">অভিজ্ঞ সোনোলজি বিশেষজ্ঞ</span>
+        <span data-lang="en">Experienced Sonology Specialists</span>
+      </h2>
+
+      <p class="section-sub">
+        <span data-lang="bn">আধুনিক আল্ট্রাসনোগ্রাফি ও ইমেজিং সেবা প্রদান করা হয়।</span>
+        <span data-lang="en">Modern ultrasonography and imaging services are provided.</span>
+      </p>
+    </div>
+
+    <div class="sonologist-card">
+
+      <!-- CARD -1 -->
+      <div class="pathologist-card">
+
+        <div class="path-avatar">
+          <i class="fas fa-baby"></i>
+        </div>
+
+        <div class="path-name">
+          <span data-lang="bn">ডাঃ মোঃ মিজানুর রহমান</span>
+          <span data-lang="en">Dr. Md. Mizanur Rahman</span>
+        </div>
+
+        <div class="path-degree">
+          <span data-lang="bn">এমবিবিএস, বিসিএস (স্বাস্থ্য)</span>
+          <span data-lang="en">MBBS, BCS (Health)</span>
+        </div>
+
+        <div class="path-spec">
+          <span data-lang="bn">এম.ফিল ইন মাইক্রোবায়োলজি (বিএসএমএমইউ)</span>
+          <span data-lang="en">M.Phil in Microbiology (BSMMU)</span>
+        </div>
+
+        <div class="path-designation">
+          <span data-lang="bn">সহকারী অধ্যাপক</span>
+          <span data-lang="en">Assistant Professor</span>
+        </div>
+
+        <div class="path-hospital">
+          <span data-lang="bn">সিলেট ওসমানী মেডিকেল কলেজ</span>
+          <span data-lang="en">Sylhet Osmani Medical College</span>
+        </div>
+
+      </div>
+
+            <!-- CARD 2-->
+      <div class="pathologist-card">
+
+        <div class="path-avatar">
+          <i class="fas fa-baby"></i>
+        </div>
+
+        <div class="path-name">
+          <span data-lang="bn">ডাঃ মোঃ মিজানুর রহমান</span>
+          <span data-lang="en">Dr. Md. Mizanur Rahman</span>
+        </div>
+
+        <div class="path-degree">
+          <span data-lang="bn">এমবিবিএস, বিসিএস (স্বাস্থ্য)</span>
+          <span data-lang="en">MBBS, BCS (Health)</span>
+        </div>
+
+        <div class="path-spec">
+          <span data-lang="bn">এম.ফিল ইন মাইক্রোবায়োলজি (বিএসএমএমইউ)</span>
+          <span data-lang="en">M.Phil in Microbiology (BSMMU)</span>
+        </div>
+
+        <div class="path-designation">
+          <span data-lang="bn">সহকারী অধ্যাপক</span>
+          <span data-lang="en">Assistant Professor</span>
+        </div>
+
+        <div class="path-hospital">
+          <span data-lang="bn">সিলেট ওসমানী মেডিকেল কলেজ</span>
+          <span data-lang="en">Sylhet Osmani Medical College</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
 
 <!-- SCHEDULE -->
 <section id="timing" class="section section-alt fade-up">
@@ -1055,9 +1298,9 @@
         <div class="social-row">
           <a href="https://www.facebook.com/share/1GZu35nBdQ/" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-facebook-f"></i></a>
           <a href="https://wa.me/8801635570872" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.instagram.com/your-profile" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.youtube.com/@your-channel" target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-youtube"></i></a>
+          <a href=" " target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href=" " target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href=" " target="_blank" rel="noopener noreferrer" class="social-btn"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
 
@@ -1116,8 +1359,21 @@
           <span data-lang="en">Our Journey</span>
         </h3>
         <p style="margin-bottom:20px;color:var(--gray-700);">
-          <span data-lang="bn">SA Digital Lab ২০২১ সালে সিলেটের প্রাণকেন্দ্রে প্রতিষ্ঠিত হয়। উন্নত প্রযুক্তি এবং নির্ভুল রিপোর্টিংয়ের মাধ্যমে আমরা গত কয়েক বছর ধরে সিলেটের মানুষের আস্থা অর্জন করে আসছি। আমাদের ল্যাবটি সরকারি লাইসেন্সপ্রাপ্ত (লাইসেন্স নং: HSM৪৫২১৪৯০) এবং সকল আন্তর্জাতিক মানদণ্ড মেনে পরিচালিত।</span>
-          <span data-lang="en">SA Digital Lab was established in 2021 in the heart of Sylhet. We have been gaining the trust of the people of Sylhet for several years through advanced technology and accurate reporting. Our lab is government licensed (License No: HSM4521490) and operated according to international standards.</span>
+          <span data-lang="bn">এসএ ডিজিটাল ল্যাব ২০২১ সালে সিলেটের প্রাণকেন্দ্রে প্রতিষ্ঠিত হয়, যার মূল লক্ষ্য ছিল জনগণকে নির্ভুল, নির্ভরযোগ্য এবং মানসম্মত ডায়াগনস্টিক সেবা প্রদান করা। প্রতিষ্ঠার শুরু থেকেই আমরা আধুনিক চিকিৎসা প্রযুক্তি ও দক্ষ পেশাদারদের সমন্বয়ে প্রতিটি রোগীর জন্য সঠিক ও সময়মতো রিপোর্ট নিশ্চিত করার প্রতি গুরুত্ব দিয়ে আসছি।
+
+বিগত কয়েক বছরে আমরা সিলেটের মানুষের আস্থা ও বিশ্বাস অর্জন করতে সক্ষম হয়েছি। উন্নত প্রযুক্তি ব্যবহার এবং মানসম্মত সেবা প্রদানের মাধ্যমে আমরা একটি নির্ভরযোগ্য ডায়াগনস্টিক ল্যাব হিসেবে নিজেদের প্রতিষ্ঠিত করেছি।
+
+আমরা গর্বিত যে আমাদের প্রতিষ্ঠানটি সরকার অনুমোদিত একটি ডায়াগনস্টিক ল্যাব, যা সম্পূর্ণভাবে অনুমোদিত চিকিৎসা নীতিমালা এবং আন্তর্জাতিক মান অনুযায়ী পরিচালিত হচ্ছে। এর ফলে প্রতিটি পরীক্ষা সর্বোচ্চ নির্ভুলতা, নিরাপত্তা এবং পেশাদারিত্বের সাথে সম্পন্ন হয়।
+
+এসএ ডিজিটাল ল্যাবে আমরা নিয়মিতভাবে আমাদের প্রযুক্তি ও সেবার মান উন্নত করছি, যাতে আধুনিক চিকিৎসা বিজ্ঞানের সাথে তাল মিলিয়ে আরও উন্নত সেবা প্রদান করা যায়। আমাদের অভিজ্ঞ ও দক্ষ টিম দ্রুত, নির্ভুল এবং নির্ভরযোগ্য রিপোর্ট প্রদান করতে সদা সচেষ্ট।
+
+আমাদের এই যাত্রা শুধুমাত্র পরীক্ষা-নিরীক্ষার মধ্যে সীমাবদ্ধ নয়; এটি মানুষের আস্থা অর্জন, উন্নত স্বাস্থ্যসেবা নিশ্চিত করা এবং সিলেটসহ সমগ্র অঞ্চলের মানুষের সুস্বাস্থ্য নিশ্চিত করার একটি প্রতিশ্রুতি।</span>
+
+<span data-lang="en">SA Digital Lab was established in 2021 in the heart of Sylhet with a clear vision to provide accurate, reliable, and high-quality diagnostic services to the people of the region. From the very beginning, our mission has been to combine modern medical technology with expert analysis to ensure precise and timely reporting for every patient.
+Over the years, we have earned the trust and confidence of the people of Sylhet by consistently maintaining high standards in laboratory testing and patient care. Our commitment to excellence and accuracy has made us a dependable name in the healthcare sector.
+We are proud to be a government licensed diagnostic laboratory, operating strictly under approved medical regulations and international quality standards. This ensures that every test conducted at our facility meets the highest level of safety, accuracy, and professionalism.
+At SA Digital Lab, we continuously upgrade our technology and improve our services to keep pace with modern advancements in medical science. Our team of skilled professionals works tirelessly to deliver fast, dependable, and precise diagnostic results that doctors and patients can rely on.
+Our journey is not just about providing tests—it is about building trust, ensuring better healthcare, and contributing to a healthier community in Sylhet and beyond.</span>
         </p>
         <div class="license-badge" style="display:inline-flex;align-items:center;gap:10px;background:var(--teal-100);padding:10px 20px;border-radius:var(--radius-md);color:var(--teal-900);font-weight:bold;">
           <i class="fas fa-certificate" style="color:var(--gold);"></i>
